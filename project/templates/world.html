@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="jumbotron p-3 bg-dark shadow-sm rounded">
+    <div class="container-lg text-light ">
+        <h4 class=" text-capitalize text-center">Access News From Different Parts Of World</h4>
+    </div>
+</div>
+
+
+<div class="container rounded form-group">
+    <div class="container-sm col-md-6 font-weight-bold ">
+        <form method="POST">
+            {{form.hidden_tag()}}
+            <div class="form-group">
+                <br>{{form.country.label}} : {{form.country(class_="form-control") }}
+            </div>
+            <div class="form-group">
+                <br>{{ form.submit(class_="btn btn-primary float-right ") }}
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<hr>
+<div class="container-fluid">
+    {% if news %} {% for i in range(10) %}
+    <div class="container-fluid margin-image">
+        <img src="{{ news[i]['urlToImage'] }}" class="img-responsive margin-text image-align" alt=" {{news[i]['source']['name']}}">
+        <section class="text-center text-border margin-text text-align">
+            <h4 class="text-title">
+                <a href=" {{news[i]['url']}} "> {{ news[i]['title'] }}</a>
+                </h3>
+                <p class="text-description text-justify">
+                    {{news[i]['description']}}
+                    <br> {{ news[i]['content'] }}
+                </p>
+        </section>
+    </div>
+    {% endfor %} {% endif %}
+</div>
+
+{% endblock %}

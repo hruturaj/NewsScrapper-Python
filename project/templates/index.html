@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="jumbotron">
+    {% if current_user.is_authenticated %}
+    <p>Hi {{current_user.username}}</p>
+    {% else %}
+    <p>Please Login or Register</p>
+    {% endif %}
+</div>
+<div class="container-fluid">
+    {% for i in range(10) %}
+    <div class="container-fluid margin-image">
+        <img src="{{ news[i]['urlToImage'] }}" class="img-responsive margin-text image-align" alt=" {{news[i]['source']['name']}}">
+        <section class="text-center text-border margin-text text-align">
+            <h4 class="text-title">
+                <a href=" {{news[i]['url']}} "> {{ news[i]['title'] }}</a>
+                </h3>
+                <p class="text-description text-justify">
+                    {{news[i]['description']}}
+                    <br> {{ news[i]['content'] }}
+                </p>
+        </section>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
